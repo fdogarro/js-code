@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Black Jack</h2>
+        <button id="start-game-btn">Start New Game</button>
+        <button id="hit-btn">Hit Me</button>
+        <button id="stay-btn">Stay</button>
+        <h2 id="game-over" class="text-yellow"></h2>
+
+        <div class="row">
+            <div id="game">
+                <div id="player" class="card col">
+                    <img src="https://i.imgur.com/7usy4Xq.png" class="card-image">
+                    <h3 class="underline-text">Player 1</h3>
+                    <h3 class="text-white font-italic">Score: <span id="player-score">0</span></h3>
+                    <h3 class="text-yellow font-italic"><span id="player-status"></span></h3>
+                </div>
+                <div id="computer" class="card col">
+                    <img src="https://i.imgur.com/7usy4Xq.png" class="card-image">
+                    <h3 class="underline-text">Computer</h3>
+                    <h3 class="text-white font-italic">Score: <span id="computer-score">0</span></h3>
+                    <h3 class="text-yellow font-italic"><span id="computer-status"></span></h3>
+                   
+                </div>
+                <div id="deck" class="card col">
+                    <img src="https://i.imgur.com/7usy4Xq.png" class="card-image">
+                    <h3 class="underline-text">Deck</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
