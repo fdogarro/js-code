@@ -1,28 +1,30 @@
 (() => {
-  // ui btn elements
+  /*** ui btn elements */
   const startGameBTN = document.querySelector("#start-game-btn");
   const hitBTN = document.querySelector("#hit-btn");
   const stayBTN = document.querySelector("#stay-btn");
 
-  // player elements
+  /*** player elements */
   const playerScore = document.querySelector("#player-score");
   const playerStatus = document.querySelector("#player-status");
 
-  // computer elements
+  /*** computer elements */
   const computerScore = document.querySelector("#computer-score");
   const computerStatus = document.querySelector("#computer-status");
 
-  // game over elements
+  /*** game over elements */
   const gameOverText = document.querySelector("#game-over");
 
-  // game state
+  /*** game state */
   const game = {
     players: [],
     deck: [],
     status: ""
   };
 
-  // start new game
+  /**
+   * initialize and reset game
+   */
 
   const startGame = () => {
     resetGameValues();
@@ -41,22 +43,24 @@
     stayBTN.removeAttribute("disabled", "");
   };
 
-  // When a player takes a hit a card is also dealt to the computer and scores are checked
-
+ /**
+  * When a player takes a hit a card is also dealt to the computer and scores are checked
+  */
   const hit = () => {
     deal(game.players, game.deck, 1);
     checkScores();
   };
 
-  // When a player clicks stay scores are checked and displayed, and the game is over.
-
+  /**
+   * When a player clicks stay scores are checked and displayed, and the game is over.
+   */
   const stay = () => {
     game.status = "Stay";
     checkScores();
   };
 
   /**
-   *
+   * create deck
    */
   const buildDeck = () => {
     const deck = [];
@@ -83,6 +87,7 @@
   /**
    *
    * @param {*} deck
+   * shuffle deck
    */
   const shuffleDeck = deck => {
     for (let i = deck.length - 1; i > 0; i--) {
@@ -97,6 +102,7 @@
   /**
    *
    * @param {*} count
+   * create new players
    */
   const createPlayers = count => {
     const players = [];
@@ -120,6 +126,7 @@
    * @param {*} players
    * @param {*} deck
    * @param {*} cardCount
+   * Deal cards
    */
   const deal = (players, deck, cardCount) => {
     for (let i = 0; i < cardCount; i++) {
@@ -133,7 +140,7 @@
   };
 
   /**
-   * lorem  hkjhk kjhk hkj kjhk jh jk 
+   * reset game values and ui
    */
   const resetGameValues = () => {
     game.players = [];
@@ -146,7 +153,9 @@
     computerStatus.innerText = "";
   };
 
-  // Check whether a person is Busted or a Winner
+  /**
+   * Check whether a person is Busted or a Winner
+   */
 
   const checkScores = () => {
     const players = game.players;
@@ -164,8 +173,11 @@
     statusUpdate();
   };
 
+  /**
+   * Change value of ace if person is busted
+   * @param {*} player 
+   */
   const aceCheck = player => {
-    
       for (let i = 0; i < player.hand.length; i++){
           if(player.hand[i].value === 'A'){
               player.hand[i].faceVal = 1;
@@ -179,17 +191,11 @@
       if(player.score > 21){
           player.status = 'Busted';
       }
-    //players hands 
-    //condition if person has A
-    // update score, status and faceVal
-    //add busted status
-
-
   };
 
-
-  //Update the status for the game
-
+/**
+ * Update the status for the game
+ */
   const statusUpdate = () => {
     const player = game.players[0];
     computerScore.innerText = "(Hidden)";
@@ -201,7 +207,9 @@
     playerStatus.innerText = player.status;
   };
 
-  // Game status if a person has not clicked Stay
+  /**
+   * Game status if a person has not clicked Stay
+   */
 
   const gameStatus = () => {
     const player = game.players[0];
@@ -216,7 +224,9 @@
     }
   };
 
-  // Game status if a player clicks stay
+  /**
+   * Game status if a player clicks stay
+   */
 
   const stayGameStatus = () => {
     const player = game.players[0];
@@ -240,7 +250,9 @@
     }
   };
 
-  // status update when the game is over
+  /**
+   * status update when the game is over
+   */
 
   const gameOver = () => {
     gameOverText.innerText = "Game Over";
@@ -248,7 +260,9 @@
     stayBTN.setAttribute("disabled", "");
   };
 
-  // Event Listeners for UI Buttons
+  /** 
+   * Event Listeners for UI Buttons
+   */
   startGameBTN.addEventListener("click", startGame);
   hitBTN.addEventListener("click", hit);
   stayBTN.addEventListener("click", stay);
